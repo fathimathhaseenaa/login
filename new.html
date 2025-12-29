@@ -1,0 +1,86 @@
+<?php
+// Include database connection
+include 'config.php';
+
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    // Sanitize inputs
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $mobile = trim($_POST['mobile'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+    $confirm_password = trim($_POST['confirm_password'] ?? '');
+
+    // Basic validation
+    if (empty($name) || empty($email) || empty($mobile) || empty($password) || empty($confirm_password)) {
+        $error = "All fields are required.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Invalid email address.";
+    } elseif (!preg_match('/^[0-9]{10,15}$/', $mobile)) {
+        $error = "Invalid mobile number. Only digits allowed (10–15 digits).";
+    } elseif ($password !== $confirm_password) {
+        $error = "Passwords do not match.";
+    } else {
+        // Check if email already exists
+        $stmt = $conn->prepare("SELECT id FROM users WHERE email = ? OR mobile = ?");
+        $stmt->bind_param("ss", $email, $mobile);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $error = "Email or mobile number already registered.";
+        } else {
+            // Hash password
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            // Insert user
+            $stmt = $conn->prepare("INSERT INTO users (name, email, mobile, password) VALUES (?, ?, ?, ?)");
+            $stmt->bind_param("ssss", $name, $email, $mobile, $hashed_password);
+
+            if ($stmt->execute()) {
+                $success = "Registration successful! You can <a href='login.php'>login</a> now.";
+            } else {
+                $error = "Error: " . $stmt->error;
+            }
+        }
+
+        $stmt->close();
+    }
+    $conn->close();
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Register</h2>
+
+    <?php if(!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
+    <?php if(!empty($success)) echo "<p style='color:green;'>$success</p>"; ?>
+
+    <form action="register.php" method="POST">
+
+        <label for="name">Name:</label><br>
+        <input type="text" name="name" id="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" id="email" required><br><br>
+
+        <label for="mobile">Mobile Number:</label><br>
+        <input type="text" name="mobile" id="mobile" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" name="password" id="password" required><br><br>
+
+        <label for="confirm_password">Confirm Password:</label><br>
+        <input type="password" name="confirm_password" id="confirm_password" required><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>

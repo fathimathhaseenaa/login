@@ -119,15 +119,16 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #333;
-    font-size: 18px;
+    color: black;
+    font-size: 14px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 /* ===== FOOTER ===== */
 .account {
+    margin-top: 10px;
     margin-bottom: 12px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 /* ===== RESPONSIVE ===== */

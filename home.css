@@ -42,6 +42,7 @@ body {
 
 .shape-green h1 {
     font-size: 32px;
+    margin-top: 70px;
     font-weight: bold;
     color: white;
 }
@@ -60,33 +61,37 @@ body {
 /* Content */
 .content {
     position: relative;
+    line-height: 30px;
     z-index: 2;
     padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    font-weight: 600;
 }
 
 .content p {
-    font-size: 18px;
+    font-size: 20px;
+    color: #5b7c5d;
+     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-top: 150px;
-    color: #333;
 }
 
 /* Buttons */
 .home-buttons {
-    margin-top: 40px;
+
+    margin-top: 70px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 100%;
+    width: 10%;
     align-items: center;
 }
 
 .home-btn {
     display: block;
-    width: 80%;
+    width: 500px;
     padding: 15px;
     background-color: var(--dark-green);
     color: white;

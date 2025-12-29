@@ -14,15 +14,15 @@
         <div class="blob-large-top"></div>
         <div class="blob-yellow-left"></div>
 
-        <img src="leaf.png" class="leaf-img" alt="leaf">
+        <img src="img/leaf.png" class="leaf-img" alt="leaf">
 
         <div class="content">
             <h1 class="hero-text">Welcome</h1>
             <div class="spacer"></div>
 
   <div class="button-group">
-    <a href="login.html" class="btn btn-dark">Sign in</a>
-    <a href="register.html" class="btn btn-light">Create New Account</a>
+    <a href="login.php" class="btn btn-dark">Sign in</a>
+    <a href="register.php" class="btn btn-light">Create New Account</a>
 </div>
 
             </div>
