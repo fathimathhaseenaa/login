@@ -29,7 +29,7 @@ $profile_image = (!empty($user['profile_image']))
 <head>
     <meta charset="UTF-8">
     <title>My Profile</title>
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="css/profile.css">
    
 </head>
 <body>
@@ -44,7 +44,8 @@ $profile_image = (!empty($user['profile_image']))
     <p><?php echo htmlspecialchars($user['email']); ?></p>
 
     <a href="home.php">Back to Home</a>
-    <a href="logout.php">Logout</a>
+    
+    <a href="login.php">Logout</a>
     <a href="edit_profile.php">Edit file</a>
 
 </div>

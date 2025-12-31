@@ -1,0 +1,113 @@
+:root{
+    --green-dark:#5b7c5d;
+    --green-soft:#92b094;
+    --bg:#f5f5f5;
+    --white:#ffffff;
+}
+
+/* ===== BODY ===== */
+body{
+    margin:0;
+    background:linear-gradient(135deg,#f2f6f3,#e9f0ea);
+    font-family:'Poppins',Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+/* ===== PROFILE CARD ===== */
+.profile-box{
+    width:360px;
+    background:var(--white);
+    padding:35px 25px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 18px 40px rgba(0,0,0,0.15);
+    position:relative;
+    animation:fadeUp 0.8s ease;
+}
+
+/* Soft decorative circle */
+.profile-box::before{
+    content:"";
+    position:absolute;
+    width:140px;
+    height:140px;
+    background:var(--green-soft);
+    border-radius:50%;
+    top:-60px;
+    left:-60px;
+    opacity:0.3;
+}
+
+/* ===== PROFILE IMAGE ===== */
+.profile-box img{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid var(--green-soft);
+    margin-bottom:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* ===== TEXT ===== */
+.profile-box h2{
+    margin:8px 0 4px;
+    color:var(--green-dark);
+    font-size:24px;
+    font-weight:700;
+}
+
+.profile-box p{
+    color:#666;
+    margin-bottom:25px;
+    font-size:15px;
+}
+
+/* ===== LINKS AS BUTTONS ===== */
+.profile-box a{
+    display:block;
+    width:85%;
+    margin:12px auto;
+    padding:14px;
+    text-decoration:none;
+    color:white;
+    font-weight:600;
+    border-radius:30px;
+    background:linear-gradient(135deg,var(--green-dark),#6f9c77);
+    box-shadow:0 8px 18px rgba(0,0,0,0.18);
+    transition:all 0.3s ease;
+}
+
+.profile-box a:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(0,0,0,0.25);
+}
+
+/* Logout button (danger look) */
+.profile-box a.logout{
+    background:linear-gradient(135deg,#c0392b,#e74c3c);
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:400px){
+    .profile-box{
+        width:100%;
+        height:100vh;
+        border-radius:0;
+    }
+}

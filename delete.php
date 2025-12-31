@@ -2,7 +2,6 @@
 session_start();
 include("db.php");
 
-/* ===== CHECK LOGIN ===== */
 if(!isset($_SESSION['username'])){
     header("Location: login.php");
     exit();
@@ -10,51 +9,44 @@ if(!isset($_SESSION['username'])){
 
 $username = $_SESSION['username'];
 
-/* ===== FETCH USER DATA ===== */
-$query = mysqli_query($conn, "SELECT * FROM user WHERE name='$username'");
+$query = mysqli_query($conn, "SELECT * FROM users WHERE username='$username'");
 $user = mysqli_fetch_assoc($query);
 
-/* ===== DELETE ACCOUNT ===== */
-if(isset($_POST['delete'])) {
-
-    // Delete profile image file if exists and not default
-    if(!empty($user['profile_image']) && $user['profile_image'] != "default.png"){
+if(isset($_POST['delete'])){
+    if(!empty($user['profile_image']) && $user['profile_image'] !== "default.png"){
         $file = "uploads/".$user['profile_image'];
         if(file_exists($file)){
-            unlink($file); // delete file
+            unlink($file);
         }
     }
 
-    // Delete user from database
-    $delete = mysqli_query($conn, "DELETE FROM user WHERE name='$username'");
-    
-    if($delete){
-        session_unset();
-        session_destroy();
-        header("Location: register.php"); // redirect to registration page
-        exit();
-    } else {
-        $error = "Failed to delete account!";
-    }
+    mysqli_query($conn, "DELETE FROM users WHERE username='$username'");
+    session_unset();
+    session_destroy();
+    header("Location: register.php");
+    exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Delete Account</title>
+    <link rel="stylesheet" href="css/delete.css">
 </head>
 <body>
-<h2>Delete Account</h2>
 
-<p>Are you sure you want to delete your account? This action cannot be undone.</p>
+<div class="delete-box">
+    <h2>⚠ Delete Account</h2>
+    <p>This action is permanent. All your data will be deleted.</p>
 
-<form method="POST">
-    <button type="submit" name="delete" style="background:red; color:white; padding:10px 20px; border:none; border-radius:5px;">Delete My Account</button>
-</form>
+    <form method="POST" onsubmit="return confirm('Are you sure? This cannot be undone!');">
+        <button type="submit" name="delete" class="danger">
+            Delete My Account
+        </button>
+    </form>
 
-<?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+    <a href="profile.php" class="cancel">Cancel & go back</a>
+</div>
 
-<a href="profile.php">Cancel</a>
 </body>
 </html>

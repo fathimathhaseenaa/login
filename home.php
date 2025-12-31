@@ -22,7 +22,7 @@ $username = $_SESSION['username'];
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="css\home.css">
 </head>
 <body>
 <div class="mobile-container">

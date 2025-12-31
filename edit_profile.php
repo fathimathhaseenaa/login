@@ -53,28 +53,49 @@ $profile_image = !empty($user['profile_image']) ? $user['profile_image'] : "defa
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Edit Profile</title>
+    <link rel="stylesheet" href="css/edit_profile.css">
 </head>
 <body>
-<h2>Edit Profile</h2>
 
-<!-- Show current image -->
-<img src="uploads/<?php echo $profile_image; ?>" width="120"><br><br>
+<div class="edit-box">
 
-<!-- Upload form -->
-<form method="POST" enctype="multipart/form-data">
-    <input type="file" name="profile_image" required><br><br>
-    <button type="submit" name="upload">Upload Image</button>
-    <p><a href="delete.php">Delete</a></p>
-</form>
+    <!-- Page title -->
+    <h2>Edit Profile</h2>
+    <p class="subtitle">Update your profile picture</p>
 
-<?php
-if($error != "") echo "<p style='color:red;'>$error</p>";
-if($success != "") echo "<p style='color:green;'>$success</p>";
-?>
+    <!-- Profile Image -->
+    <div class="profile-img">
+        <img src="uploads/<?php echo $profile_image; ?>" alt="Profile Image">
+    </div>
 
-<a href="profile.php">Back to Profile</a>
+    <!-- Upload Form -->
+    <form method="POST" enctype="multipart/form-data">
+        <label for="profile_image">Choose new profile image</label>
+        <input type="file" name="profile_image" id="profile_image" required>
+
+        <button type="submit" name="upload">Upload Image</button>
+    </form>
+
+    <!-- Messages -->
+    <?php if ($error) { ?>
+        <p class="error"><?php echo $error; ?></p>
+    <?php } ?>
+
+    <?php if ($success) { ?>
+        <p class="success"><?php echo $success; ?></p>
+    <?php } ?>
+
+    <!-- Links -->
+    <div class="links">
+        <a href="profile.php">⬅ Back to Profile</a><br>
+        <a href="delete.php">🗑 Delete Account</a>
+    </div>
+
+</div>
+
 </body>
 </html>
