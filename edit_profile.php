@@ -48,6 +48,10 @@ if(isset($_POST['upload'])) {
         $error = "No file selected!";
     }
 }
+// if(isset($_POST['delete_profile'])){
+    // if(isset($_))
+
+}
 
 $profile_image = !empty($user['profile_image']) ? $user['profile_image'] : "default.png";
 ?>
@@ -91,6 +95,7 @@ $profile_image = !empty($user['profile_image']) ? $user['profile_image'] : "defa
 
     <!-- Links -->
     <div class="links">
+        <button type="delete_profile">Delete profile</button>
         <a href="profile.php">⬅ Back to Profile</a><br>
         <a href="delete.php">🗑 Delete Account</a>
     </div>

@@ -20,6 +20,7 @@ if(isset($_POST['delete'])){
         }
     }
 
+    
     mysqli_query($conn, "DELETE FROM users WHERE username='$username'");
     session_unset();
     session_destroy();
