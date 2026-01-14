@@ -24,7 +24,7 @@ body {
     max-width: 350px;
     height: 560px;
     background-color: white;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     border-radius: 30px;
     overflow: hidden;
 }
@@ -91,6 +91,7 @@ button {
     text-decoration: none;
     list-style: none;
 }
+
 .icon-circle {
     width: 45px;
     height: 45px;
@@ -101,7 +102,7 @@ button {
     align-items: center;
     color: #333;
     font-size: 18px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     cursor: pointer;
 }
 
@@ -121,7 +122,7 @@ button {
     align-items: center;
     color: black;
     font-size: 14px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* ===== FOOTER ===== */
@@ -129,6 +130,7 @@ button {
     margin-top: 10px;
     margin-bottom: 12px;
     font-size: 15px;
+    color: #333;
 }
 
 /* ===== RESPONSIVE ===== */

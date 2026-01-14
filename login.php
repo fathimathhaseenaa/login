@@ -1,4 +1,4 @@
-    <?php
+<?php
     include("db.php");
     session_start();
 
@@ -7,12 +7,12 @@
         $name = $_POST['name'];
         $password = $_POST['password'];
 
-        $query = "SELECT * FROM user WHERE name='$name' AND password='$password'";
+        $query = "SELECT * FROM users WHERE name='$name' AND password='$password'";
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) == 1) {
             $_SESSION['username'] = $name;
-            header("Location: home.php");
+            header("Location: profile.php");
             exit();
         } else {
             $error = "Invalid username or password!";

@@ -10,7 +10,7 @@ if (!isset($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 
-$query = mysqli_query($conn, "SELECT * FROM user WHERE name='$username'");
+$query = mysqli_query($conn, "SELECT * FROM users WHERE name='$username'");
 $user = mysqli_fetch_assoc($query);
 
 $error = "";
@@ -32,7 +32,7 @@ if(isset($_POST['upload'])) {
 
             if(move_uploaded_file($_FILES['profile_image']['tmp_name'], $destination)){
                 // Update in database
-                $update = mysqli_query($conn, "UPDATE user SET profile_image='$newname' WHERE name='$username'");
+                $update = mysqli_query($conn, "UPDATE users SET profile_image='$newname' WHERE name='$username'");
                 if($update){
                     $success = "Profile image updated!";
                     $user['profile_image'] = $newname;
@@ -47,10 +47,6 @@ if(isset($_POST['upload'])) {
     } else {
         $error = "No file selected!";
     }
-}
-// if(isset($_POST['delete_profile'])){
-    // if(isset($_))
-
 }
 
 $profile_image = !empty($user['profile_image']) ? $user['profile_image'] : "default.png";
@@ -95,7 +91,6 @@ $profile_image = !empty($user['profile_image']) ? $user['profile_image'] : "defa
 
     <!-- Links -->
     <div class="links">
-        <button type="delete_profile">Delete profile</button>
         <a href="profile.php">⬅ Back to Profile</a><br>
         <a href="delete.php">🗑 Delete Account</a>
     </div>

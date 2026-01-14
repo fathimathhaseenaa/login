@@ -1,4 +1,3 @@
-
 :root {
     --sage-green: #92b094;
     --white: #ffffff;
@@ -24,7 +23,6 @@ body {
 
 }
 
-/* Background shapes */
 .shape-green {
     position: absolute;
     width: 150%;
